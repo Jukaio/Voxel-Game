@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{D73E267D-630E-EA42-B9BE-79A69EB2AE36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -60,6 +61,7 @@
     <Compile Include="Assets\Copyable.cs" />
     <Compile Include="Assets\QuickType.cs" />
     <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\RecursiveBacktracking.cs" />
     <Compile Include="Assets\RoomGenerator.cs" />
     <Compile Include="Assets\GameObjectWrappers.cs" />
   </ItemGroup>

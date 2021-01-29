@@ -10,9 +10,9 @@ public class RoomGenerator : MonoBehaviour
 
     private Pool rooms = new Pool();
     private LDtk content;
-    private World world;
+    readonly World world;
 
-    private class Pool
+    public class Pool
     {
         private List<RoomData> data = new List<RoomData>();
         public int Length { get { return data.Count; } }
@@ -25,7 +25,7 @@ public class RoomGenerator : MonoBehaviour
             return data[index];
         }
     }
-    private class RoomData : Grid3D<GameObjectData>, Copyable<RoomData>
+    public class RoomData : Grid3D<GameObjectData>, Copyable<RoomData>
     {
         public RoomData()
             : base()
@@ -90,7 +90,7 @@ public class RoomGenerator : MonoBehaviour
             return new Room(this);
         }
     }
-    private class World : Grid3D<Room>
+    public class World : Grid3D<Room>
     {
         GameObject parent = new GameObject("World");
 
@@ -125,7 +125,7 @@ public class RoomGenerator : MonoBehaviour
             base.set(x, y, room);
         }
     }
-    private class WorldData : Grid3D<RoomData>
+    public class WorldData : Grid3D<RoomData>
     {
         public WorldData()
             : base()
@@ -190,6 +190,25 @@ public class RoomGenerator : MonoBehaviour
         world.debug_draw();   
     }
 
+    /*
+     
+    def carve_passages_from(cx, cy, grid)
+  directions = [N, S, E, W].sort_by{rand}
+
+  directions.each do |direction|
+    nx, ny = cx + DX[direction], cy + DY[direction]
+
+            if ny.between ? (0, grid.length-1) && nx.between?(0, grid[ny].length-1) && grid[ny][nx] == 0
+              grid[cy][cx] |= direction
+              grid[ny][nx] |= OPPOSITE[direction]
+              carve_passages_from(nx, ny, grid)
+            end
+          end
+        end
+
+     * */
+
+
     private static WorldData create_world_data(Pool rooms, GameObject[] prototypes)
     {
         // Initialise the whole world
@@ -209,23 +228,37 @@ public class RoomGenerator : MonoBehaviour
         */
 
         Vector2Int current = new Vector2Int(3, 3);
-
+        Vector2Int prev;
         List<Vector2Int> open_direction = new List<Vector2Int>();
-        for(int i = 0; i < 8; i++)
-        {
-            world_data.set(current.x, current.y, rooms.get(0));
+        world_data.set(current.x, current.y, rooms.get(0));
+        prev = current;
 
+        
+        /*
+        for (int i = 0; i < 12; i++)
+        {
             open_direction.Clear();
             if (current.x > 0)                      open_direction.Add(new Vector2Int(-1,  0));
             if (current.y > 0)                      open_direction.Add(new Vector2Int( 0, -1));
             if (current.x < world_data.Count.x - 1) open_direction.Add(new Vector2Int( 1,  0));
             if (current.y < world_data.Count.y - 1) open_direction.Add(new Vector2Int( 0,  1));
 
+            for (int j = 0; j < open_direction.Count; j++)
+            {
+                if((current += open_direction[j]) == prev)
+                {
+                    open_direction.RemoveAt(j);
+                    break;
+                }
+            }
+
             current += open_direction[Random.Range(0, open_direction.Count)];
 
 
+            world_data.set(current.x, current.y, rooms.get(0));
+            prev = current;
         }
-
+        */
         return world_data;
     }
     private static World create_world(WorldData data)
