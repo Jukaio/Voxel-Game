@@ -25,10 +25,17 @@ class RecursiveBacktracking
         public bool[] directions = { false, false, false, false };
     }
 
-    public static void build_path(Vector2Int start, Vector2Int size, int depth)
+    public static bool[,] build_path(Vector2Int start, Vector2Int size, int depth)
     {
         Node[,] grid = new Node[size.x, size.y];
-        recursive_building(0, 0, ref grid, depth);
+        for (int x = 0; x < grid.GetLength(0); x++)
+        {
+            for (int y = 0; y < grid.GetLength(1); y++)
+            {
+                grid[x, y] = new Node();
+            }
+        }
+        recursive_building(start.x, start.y, ref grid, depth);
 
         bool[,] paths = new bool[size.x, size.y];
         for (int x = 0; x < grid.GetLength(0); x++)
@@ -41,6 +48,7 @@ class RecursiveBacktracking
                 }
             }
         }
+        return paths;
     }
 
     private static void recursive_building(int cx, int cy, ref Node[,] grid, int depth)
@@ -49,21 +57,22 @@ class RecursiveBacktracking
             return;
 
         List<int> directions = new List<int> { N, S, E, W };
-        directions.Sort((emp1, emp2) => Random.Range(0, 10).CompareTo(Random.Range(0, 10)));
+        directions.Sort((emp1, emp2) => Random.Range(0, 2).CompareTo(Random.Range(0, 2)));
 
         foreach (var dir in directions)
         {
             var nx = cx + DX[dir];
             var ny = cy + DY[dir];
 
-            if (nx > 0 &&
-               nx < grid.GetLength(0) &&
-               ny > 0 &&
-               ny < grid.GetLength(1))
+            if (nx >= 0 &&
+                nx <= grid.GetLength(0) &&
+                ny > 0 &&
+                ny < grid.GetLength(1))
             {
                 grid[cx, cy].directions[dir] = true;
                 grid[nx, ny].directions[OPP[dir]] = true;
                 recursive_building(nx, ny, ref grid, depth - 1);
+                if(Random.Range(0, 2) == 1) return; 
             }
         }
     }

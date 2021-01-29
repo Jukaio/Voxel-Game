@@ -10,7 +10,7 @@ public class RoomGenerator : MonoBehaviour
 
     private Pool rooms = new Pool();
     private LDtk content;
-    readonly World world;
+    public World world { get; private set; }
 
     public class Pool
     {
@@ -233,7 +233,17 @@ public class RoomGenerator : MonoBehaviour
         world_data.set(current.x, current.y, rooms.get(0));
         prev = current;
 
-        
+        var layout = RecursiveBacktracking.build_path(new Vector2Int(3, 3), world_data.Count, 3);
+        for (int x = 0; x < layout.GetLength(0); x++)
+        {
+            for (int y = 0; y < layout.GetLength(1); y++)
+            {
+                if(layout[x,y])
+                {
+                    world_data.set(x, y, rooms.get(Random.Range(0, rooms.Length)));
+                }
+            }
+        }
         /*
         for (int i = 0; i < 12; i++)
         {
