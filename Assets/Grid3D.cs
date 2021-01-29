@@ -46,7 +46,6 @@ public class Grid3D<T> where T : Copyable<T>, new()
     public Grid3D()
         : base()
     {
-
     }
     public Grid3D(Grid3D<T> other)
         : this()

@@ -62,6 +62,7 @@
     <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\RoomGenerator.cs" />
     <Compile Include="Assets\GameObjectWrappers.cs" />
+    <Compile Include="Assets\RecursiveBacktracking.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
