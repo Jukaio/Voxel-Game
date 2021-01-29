@@ -1,12 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public interface Copyable<T>
-{
-    public abstract T create_copy();
-}
-
 public class Grid3D<T> where T : Copyable<T>, new()
 {
     public float CellSize { get; set; }
@@ -140,9 +134,6 @@ public class Grid3D<T> where T : Copyable<T>, new()
                           Color.red);
             }
         }
-
-        //draw_rect(origin_position, new Vector2(0.5f, 0.5f), Color.yellow);
-        //draw_rect(center, new Vector2(0.5f, 0.5f), Color.green);
     }
 }
 
