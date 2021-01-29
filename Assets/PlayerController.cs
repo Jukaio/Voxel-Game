@@ -6,11 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] float speed = 2.0f;
-    private static int CURRENT = 0;
-    private static int PREVIOUS = 1;
+
+    private const int CURRENT = 0;
+    private const int PREVIOUS = 1;
 
     private Vector3[] movement_axes = { new Vector3(), new Vector3() };
-    private Vector3 MovementAxes{ get { return movement_axes[CURRENT]; } }
+
     private float view_angle = 0.0f;
     private Rigidbody rb;
 
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = MovementAxes * speed;
+        rb.velocity = movement_axes[CURRENT] * speed;
         transform.localRotation = Quaternion.Euler(0, view_angle, 0);
     }
 }

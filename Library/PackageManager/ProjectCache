@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637474557832586403
-    m_Hash: 3585373778
+      ticks: 637475402541881518
+    m_Hash: 3329189774
   m_LockFileStatus:
     m_FilePath: E:/Unity/Voxel Roguelike/Voxel Game/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637475332263169990
-    m_Hash: 3082358937
+      ticks: 637475402549833713
+    m_Hash: 1242292024
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -820,6 +820,72 @@ m_PackageAssets:
       repository:
         type: 
         url: 
+        revision: 
+        path: 
+    - packageId: jillejr.newtonsoft.json-for-unity@https://github.com/jilleJr/Newtonsoft.Json-for-Unity.git#upm
+      testable: 0
+      isDirectDependency: 1
+      version: 12.0.301
+      source: 5
+      resolvedPath: E:\Unity\Voxel Roguelike\Voxel Game\Library\PackageCache\jillejr.newtonsoft.json-for-unity@486af8b260
+      assetPath: Packages/jillejr.newtonsoft.json-for-unity
+      name: jillejr.newtonsoft.json-for-unity
+      displayName: Json.NET 12.0.3 for Unity
+      author:
+        name: jilleJr
+        email: 
+        url: 
+      category: Utility
+      type: library
+      description: "Json.NET is a popular high-performance JSON framework for .NET\n\nThis
+        package is a fork of Newtonsoft.Json containing custom builds targeting standalone,
+        portable (UWP, WP8), and AOT targets such as all IL2CPP builds (iOS, WebGL,
+        Android, Windows, Mac OS X, et.al).\n\nThis package is licensed under The
+        MIT License (MIT)\n\nCopyright \xA9 2019 Kalle Jillheden (jilleJr)\nhttps://github.com/jilleJr/Newtonsoft.Json-for-Unity\n\nCopyright
+        \xA9 2016 SaladLab\nhttps://github.com/SaladLab/Json.Net.Unity3D\n\nCopyright
+        \xA9 2007 James Newton-King\nhttps://github.com/JamesNK/Newtonsoft.Json\n\nSee
+        full copyrights in LICENSE.md inside package"
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 12.0.101
+        - 12.0.102
+        - 12.0.201
+        - 12.0.301
+        compatible:
+        - 12.0.101
+        - 12.0.102
+        - 12.0.201
+        - 12.0.301
+        verified: 
+      dependencies: []
+      resolvedDependencies: []
+      keywords:
+      - json
+      - json.net
+      - newtonsoft
+      - newtonsoft.json
+      - unity
+      - upm
+      registry:
+        id: 
+        name: 
+        url: 
+        scopes: []
+        isDefault: 0
+        capabilities: 0
+      hasRegistry: 0
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 0
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: https://github.com/jilleJr/Newtonsoft.Json-for-Unity.git
         revision: 
         path: 
     - packageId: com.unity.modules.ai@1.0.0
@@ -2451,73 +2517,6 @@ m_PackageAssets:
       repository:
         type: 
         url: 
-        revision: 
-        path: 
-    - packageId: jillejr.newtonsoft.json-for-unity@12.0.301
-      testable: 0
-      isDirectDependency: 1
-      version: 12.0.301
-      source: 1
-      resolvedPath: E:\Unity\Voxel Roguelike\Voxel Game\Library\PackageCache\jillejr.newtonsoft.json-for-unity@12.0.301
-      assetPath: Packages/jillejr.newtonsoft.json-for-unity
-      name: jillejr.newtonsoft.json-for-unity
-      displayName: Json.NET 12.0.3 for Unity
-      author:
-        name: jilleJr
-        email: 
-        url: 
-      category: Utility
-      type: library
-      description: "Json.NET is a popular high-performance JSON framework for .NET\n\nThis
-        package is a fork of Newtonsoft.Json containing custom builds targeting standalone,
-        portable (UWP, WP8), and AOT targets such as all IL2CPP builds (iOS, WebGL,
-        Android, Windows, Mac OS X, et.al).\n\nThis package is licensed under The
-        MIT License (MIT)\n\nCopyright \xA9 2019 Kalle Jillheden (jilleJr)\nhttps://github.com/jilleJr/Newtonsoft.Json-for-Unity\n\nCopyright
-        \xA9 2016 SaladLab\nhttps://github.com/SaladLab/Json.Net.Unity3D\n\nCopyright
-        \xA9 2007 James Newton-King\nhttps://github.com/JamesNK/Newtonsoft.Json\n\nSee
-        full copyrights in LICENSE.md inside package"
-      status: 4
-      errors: []
-      versions:
-        all:
-        - 12.0.101
-        - 12.0.102
-        - 12.0.201
-        - 12.0.301
-        compatible:
-        - 12.0.101
-        - 12.0.102
-        - 12.0.201
-        - 12.0.301
-        verified: 
-      dependencies: []
-      resolvedDependencies: []
-      keywords:
-      - json
-      - json.net
-      - newtonsoft
-      - newtonsoft.json
-      - unity
-      - upm
-      registry:
-        id: scoped:jilleJr
-        name: jilleJr
-        url: https://npm.cloudsmith.io/jillejr/newtonsoft-json-for-unity
-        scopes:
-        - jillejr.newtonsoft.json-for-unity
-        isDefault: 0
-        capabilities: 0
-      hasRegistry: 1
-      hideInEditor: 1
-      entitlements:
-        isAllowed: 1
-      isAssetStorePackage: 0
-      datePublishedTicks: 637150703564990100
-      documentationUrl: 
-      hasRepository: 1
-      repository:
-        type: git
-        url: https://github.com/jilleJr/Newtonsoft.Json-for-Unity.git
         revision: 
         path: 
     - packageId: com.unity.modules.subsystems@1.0.0

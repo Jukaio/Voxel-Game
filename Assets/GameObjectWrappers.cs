@@ -23,7 +23,6 @@ public class GameObjectData : Copyable<GameObjectData>
         return new GameObjectData(Index, Prototype);
     }
 }
-
 public class CopyableGameObject : Copyable<CopyableGameObject>
 {
     public GameObject game_object { get; private set; }

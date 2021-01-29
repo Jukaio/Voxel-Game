@@ -6,13 +6,25 @@ using QuickType;
 
 public class RoomGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject[] static_environment;
     [SerializeField] private GameObject[] voxel_model_prototypes;
 
     private Pool rooms = new Pool();
     private LDtk content;
     private World world;
 
+    private class Pool
+    {
+        private List<RoomData> data = new List<RoomData>();
+        public int Length { get { return data.Count; } }
+        public void add(RoomData that)
+        {
+            data.Add(that);
+        }
+        public RoomData get(int index)
+        {
+            return data[index];
+        }
+    }
     private class RoomData : Grid3D<GameObjectData>, Copyable<RoomData>
     {
         public RoomData()
@@ -41,19 +53,6 @@ public class RoomGenerator : MonoBehaviour
         public RoomData create_copy()
         {
             return new RoomData(this);
-        }
-    }
-    private class Pool
-    {
-        private List<RoomData> data = new List<RoomData>();
-        public int Length { get { return data.Count; } }
-        public void add(RoomData that)
-        {
-            data.Add(that);
-        }
-        public RoomData get(int index)
-        {
-            return data[index];
         }
     }
     public class Room : Grid3D<CopyableGameObject>, Copyable<Room>
@@ -91,7 +90,6 @@ public class RoomGenerator : MonoBehaviour
             return new Room(this);
         }
     }
-
     private class World : Grid3D<Room>
     {
         GameObject parent = new GameObject("World");
@@ -138,13 +136,11 @@ public class RoomGenerator : MonoBehaviour
             : base(position, count, cell_size)
         {
         }
-
         public void set(int x, int y, RoomData that)
         {
             var copy = that != null ? that.create_copy() : null;
             base.set(x, y, copy);
         }
-
         private void cut_door_at(int x, int y, Vector2Int direction, GameObject door)
         {
             var data = get(x, y);
@@ -159,7 +155,6 @@ public class RoomGenerator : MonoBehaviour
             ty = ty > 0 && ty < data.Count.y - 1 ? ty - 1 : ty;
             data.get(tx, ty).Prototype = door;
         }
-
         public void cut_out_doors(GameObject door_prototype)
         {
             for (int x = 0; x < Count.x; x++)
@@ -190,15 +185,16 @@ public class RoomGenerator : MonoBehaviour
         world = create_world(world_data);
     }
 
-    void Update()
+    void LateUpdate()
     {
-
+        world.debug_draw();   
     }
 
     private static WorldData create_world_data(Pool rooms, GameObject[] prototypes)
     {
         // Initialise the whole world
-        WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(5, 5), 16.0f);
+        WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(7, 7), 16.0f);
+        /*
         int index = 0;
         for (int x = 0; x < world_data.Count.x; x++)
         {
@@ -210,12 +206,26 @@ public class RoomGenerator : MonoBehaviour
                     index = 0;
             }
         }
+        */
 
-        // change level stuff stuff
-        world_data.set(1, 1, null);
-        world_data.set(3, 3, null);
-        world_data.set(1, 3, null);
-        world_data.set(3, 1, null);
+        Vector2Int current = new Vector2Int(3, 3);
+
+        List<Vector2Int> open_direction = new List<Vector2Int>();
+        for(int i = 0; i < 8; i++)
+        {
+            world_data.set(current.x, current.y, rooms.get(0));
+
+            open_direction.Clear();
+            if (current.x > 0)                      open_direction.Add(new Vector2Int(-1,  0));
+            if (current.y > 0)                      open_direction.Add(new Vector2Int( 0, -1));
+            if (current.x < world_data.Count.x - 1) open_direction.Add(new Vector2Int( 1,  0));
+            if (current.y < world_data.Count.y - 1) open_direction.Add(new Vector2Int( 0,  1));
+
+            current += open_direction[Random.Range(0, open_direction.Count)];
+
+
+        }
+
         return world_data;
     }
     private static World create_world(WorldData data)
@@ -238,7 +248,7 @@ public class RoomGenerator : MonoBehaviour
     private static LDtk json_to_LDtk(string path)
     {
         var json = file_to_string(path);
-        return QuickType.LDtk.FromJson(json);
+        return LDtk.FromJson(json);
     }
     private static string file_to_string(string path)
     {
