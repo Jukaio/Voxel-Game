@@ -14,6 +14,8 @@ public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private PrototypeList[] prototypes;
     [SerializeField] float cell_size = 1.0f;
+    [SerializeField] private Vector2Int player_spawn_position;
+    public Vector2Int PlayerSpawnPosition{ get { return player_spawn_position; } private set { player_spawn_position = value; } }
     private Pool rooms = new Pool();
     private LDtk content;
     public World world { get; private set; }
@@ -181,12 +183,12 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         content = json_to_LDtk("Assets/Resources/Voxel.ldtk");
         rooms = create_room_pool(content, prototypes, cell_size);
 
-        var world_data = create_world_data(rooms, prototypes, cell_size);
+        var world_data = create_world_data(PlayerSpawnPosition, rooms, prototypes, cell_size);
         world_data.cut_out_doors(prototypes[0]);
         world = create_world(world_data);
     }
@@ -215,7 +217,7 @@ public class RoomGenerator : MonoBehaviour
      * */
 
 
-    private static WorldData create_world_data(Pool rooms, PrototypeList[] prototypes, float cell_size)
+    private static WorldData create_world_data(Vector2Int spawn,Pool rooms, PrototypeList[] prototypes, float cell_size)
     {
         // Initialise the whole world
         WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(11, 11), 16.0f * cell_size);
@@ -238,7 +240,7 @@ public class RoomGenerator : MonoBehaviour
         List<Vector2Int> open_direction = new List<Vector2Int>();
         prev = current;
 
-        var layout = RecursiveBacktracking.build_path(new Vector2Int(5, 5), world_data.Count, 30);
+        var layout = RecursiveBacktracking.build_path(spawn, world_data.Count, 30);
         for (int x = 0; x < layout.GetLength(0); x++)
         {
             for (int y = 0; y < layout.GetLength(1); y++)

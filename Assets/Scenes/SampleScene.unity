@@ -222,6 +222,7 @@ MonoBehaviour:
     - {fileID: 117926131315950436, guid: de88a1f8ae86b8f4d8726dd0c3dcad10, type: 3}
     - {fileID: 117926131315950436, guid: e862164626dc60e47aac769e5455a564, type: 3}
   cell_size: 1.2
+  player_spawn_position: {x: 5, y: 5}
 --- !u!4 &682322698
 Transform:
   m_ObjectHideFlags: 0
@@ -580,6 +581,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2172263533888840545, guid: b4e40408946c0e64199c5684cd9a56e4, type: 3}
+      propertyPath: RG
+      value: 
+      objectReference: {fileID: 682322697}
     - target: {fileID: 2172263533888840545, guid: b4e40408946c0e64199c5684cd9a56e4, type: 3}
       propertyPath: speed
       value: 5

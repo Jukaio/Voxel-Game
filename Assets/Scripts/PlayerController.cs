@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] float speed = 2.0f;
+    [SerializeField] RoomGenerator RG;
 
     private const int CURRENT = 0;
     private const int PREVIOUS = 1;
@@ -21,7 +22,8 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-
+        transform.position = RG.world.grid_to_world(RG.PlayerSpawnPosition, true);
+        transform.Translate(Vector3.up);
     }
 
     // Update is called once per frame
