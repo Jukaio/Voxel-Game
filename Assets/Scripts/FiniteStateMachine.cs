@@ -6,6 +6,7 @@ using UnityEngine;
     Finite               -> Collection
     Finite.State         -> Polymorphic State
     Finite.State.Machine -> Execution of States 
+    Why nested?          -> to ensure privacy 
 */
 
 public class Finite

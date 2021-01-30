@@ -4,9 +4,15 @@ using UnityEngine;
 using System.IO;
 using QuickType;
 
+[System.Serializable]
+public class PrototypeList
+{
+    [SerializeField] public GameObject[] items;
+}
+
 public class RoomGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject[] voxel_model_prototypes;
+    [SerializeField] private PrototypeList[] prototypes;
     [SerializeField] float cell_size = 1.0f;
     private Pool rooms = new Pool();
     private LDtk content;
@@ -25,7 +31,7 @@ public class RoomGenerator : MonoBehaviour
             return data[index];
         }
     }
-    public class RoomData : Grid3D<GameObjectData>, Copyable<RoomData>
+    public class RoomData : Grid3D<PrototypeData>, Copyable<RoomData>
     {
         public RoomData()
             : base()
@@ -41,11 +47,11 @@ public class RoomGenerator : MonoBehaviour
             : base(position, count, cell_size)
         {
         }
-        public new void set(int x, int y, GameObjectData that)
+        public new void set(int x, int y, PrototypeData that)
         {
             base.set(x, y, that);
         }
-        public new GameObjectData get(int x, int y)
+        public new PrototypeData get(int x, int y)
         {
             return base.get(x, y);
         }
@@ -118,7 +124,7 @@ public class RoomGenerator : MonoBehaviour
                 for (int iy = 0; iy < that.Count.y; iy++)
                 {
                     var data = that.get(ix, iy);
-                    var temp = GameObject.Instantiate(data.Prototype);
+                    var temp = GameObject.Instantiate(data.Prototype.items[Random.Range(0, data.Prototype.items.Length)]);
                     room.set(data.Index.x, data.Index.y, temp);
                 }
             }
@@ -141,7 +147,7 @@ public class RoomGenerator : MonoBehaviour
             var copy = that != null ? that.create_copy() : null;
             base.set(x, y, copy);
         }
-        private void cut_door_at(int x, int y, Vector2Int direction, GameObject door)
+        private void cut_door_at(int x, int y, Vector2Int direction, PrototypeList door)
         {
             var data = get(x, y);
 
@@ -155,7 +161,7 @@ public class RoomGenerator : MonoBehaviour
             ty = ty > 0 && ty < data.Count.y - 1 ? ty - 1 : ty;
             data.get(tx, ty).Prototype = door;
         }
-        public void cut_out_doors(GameObject door_prototype)
+        public void cut_out_doors(PrototypeList door_prototype)
         {
             for (int x = 0; x < Count.x; x++)
             {
@@ -178,10 +184,10 @@ public class RoomGenerator : MonoBehaviour
     void Start()
     {
         content = json_to_LDtk("Assets/Resources/Voxel.ldtk");
-        rooms = create_room_pool(content, voxel_model_prototypes, cell_size);
+        rooms = create_room_pool(content, prototypes, cell_size);
 
-        var world_data = create_world_data(rooms, voxel_model_prototypes, cell_size);
-        world_data.cut_out_doors(voxel_model_prototypes[0]);
+        var world_data = create_world_data(rooms, prototypes, cell_size);
+        world_data.cut_out_doors(prototypes[0]);
         world = create_world(world_data);
     }
 
@@ -209,10 +215,10 @@ public class RoomGenerator : MonoBehaviour
      * */
 
 
-    private static WorldData create_world_data(Pool rooms, GameObject[] prototypes, float cell_size)
+    private static WorldData create_world_data(Pool rooms, PrototypeList[] prototypes, float cell_size)
     {
         // Initialise the whole world
-        WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(7, 7), 16.0f * cell_size);
+        WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(11, 11), 16.0f * cell_size);
         /*
         int index = 0;
         for (int x = 0; x < world_data.Count.x; x++)
@@ -230,10 +236,9 @@ public class RoomGenerator : MonoBehaviour
         Vector2Int current = new Vector2Int(3, 3);
         Vector2Int prev;
         List<Vector2Int> open_direction = new List<Vector2Int>();
-        world_data.set(current.x, current.y, rooms.get(0));
         prev = current;
 
-        var layout = RecursiveBacktracking.build_path(new Vector2Int(3, 3), world_data.Count, 3);
+        var layout = RecursiveBacktracking.build_path(new Vector2Int(5, 5), world_data.Count, 30);
         for (int x = 0; x < layout.GetLength(0); x++)
         {
             for (int y = 0; y < layout.GetLength(1); y++)
@@ -301,16 +306,16 @@ public class RoomGenerator : MonoBehaviour
         return data;
     }
 
-    private static Pool create_room_pool(LDtk content, GameObject[] prototypes, float cell_size)
+    private static Pool create_room_pool(LDtk content, PrototypeList[] prototypes, float cell_size)
     {
         Pool rooms = new Pool();
         foreach (var level in content.Levels)
         {
-            rooms.add(create_room(level, prototypes, cell_size));
+            rooms.add(create_room_data(level, prototypes, cell_size));
         }
         return rooms;
     }
-    private static RoomData create_room(Level level, GameObject[] prototypes, float cell_size)
+    private static RoomData create_room_data(Level level, PrototypeList[] prototypes, float cell_size)
     {
         var size = level.LayerInstances[0].GridSize;
         var room = new RoomData(Vector3.zero, new Vector2Int((int)size, (int)size), cell_size);
@@ -320,7 +325,7 @@ public class RoomGenerator : MonoBehaviour
             {
                 var proto_index = level.LayerInstances[0].IntGrid[y * size + x].V;
                 var prototype = prototypes[proto_index];
-                room.set(x, y, new GameObjectData(new Vector2Int(x, y), prototype));
+                room.set(x, y, new PrototypeData(new Vector2Int(x, y), prototype));
             }
         }
         return room;

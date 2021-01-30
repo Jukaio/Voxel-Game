@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameObjectData : Copyable<GameObjectData>
+public class PrototypeData : Copyable<PrototypeData>
 {
-    public GameObjectData()
+    public PrototypeData()
     {
 
     }
-    public GameObjectData(Vector2Int index, GameObject prototype)
+    public PrototypeData(Vector2Int index, PrototypeList prototype)
     {
         this.Index = index;
-        this.prototype = prototype;
+        this.prototypes = prototype;
     }
 
     public Vector2Int Index { get; private set; }
-    private GameObject prototype;
-    public GameObject Prototype { get { return prototype; } set { prototype = value; } }
+    private PrototypeList prototypes;
+    public PrototypeList Prototype { get { return prototypes; } set { prototypes = value; } }
 
-    public GameObjectData create_copy()
+    public PrototypeData create_copy()
     {
-        return new GameObjectData(Index, Prototype);
+        return new PrototypeData(Index, Prototype);
     }
 }
 public class CopyableGameObject : Copyable<CopyableGameObject>

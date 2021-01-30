@@ -196,13 +196,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ca356eb1055624ab5f3afbec0a5681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voxel_model_prototypes:
-  - {fileID: 4209216223322273726, guid: a9d12052ef6d2414598f99ce80f2a29d, type: 3}
-  - {fileID: 124787660203031814, guid: 46bf52e598d887149acdedaaeec3b68f, type: 3}
-  - {fileID: 5079125158807087056, guid: e919224c6e2514940b31f04e7296480b, type: 3}
-  - {fileID: 5079125158807087056, guid: d0de34f58009c6745aeb438cd2811047, type: 3}
-  - {fileID: 5079125158807087056, guid: 5fddc7a9025485c4d9dd9bb3453cf9f3, type: 3}
-  - {fileID: 7914927189539038664, guid: b6a05165ac85ad949b7c2dd9880d3844, type: 3}
+  prototypes:
+  - items:
+    - {fileID: 4209216223322273726, guid: a9d12052ef6d2414598f99ce80f2a29d, type: 3}
+    - {fileID: 4209216223322273726, guid: 2d62b43da340b154bb67a1290b0dedd5, type: 3}
+  - items:
+    - {fileID: 124787660203031814, guid: 46bf52e598d887149acdedaaeec3b68f, type: 3}
+  - items:
+    - {fileID: 5079125158807087056, guid: e919224c6e2514940b31f04e7296480b, type: 3}
+  - items:
+    - {fileID: 5079125158807087056, guid: d0de34f58009c6745aeb438cd2811047, type: 3}
+  - items:
+    - {fileID: 5079125158807087056, guid: 5fddc7a9025485c4d9dd9bb3453cf9f3, type: 3}
+  - items:
+    - {fileID: 7914927189539038664, guid: b6a05165ac85ad949b7c2dd9880d3844, type: 3}
   cell_size: 1
 --- !u!4 &682322698
 Transform:
@@ -370,8 +377,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
