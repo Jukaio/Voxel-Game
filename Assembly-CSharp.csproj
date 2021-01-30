@@ -56,13 +56,18 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Grid3D.cs" />
-    <Compile Include="Assets\Copyable.cs" />
-    <Compile Include="Assets\QuickType.cs" />
-    <Compile Include="Assets\PlayerController.cs" />
-    <Compile Include="Assets\RoomGenerator.cs" />
-    <Compile Include="Assets\GameObjectWrappers.cs" />
-    <Compile Include="Assets\RecursiveBacktracking.cs" />
+    <Compile Include="Assets\Scripts\Grid3D.cs" />
+    <Compile Include="Assets\Scripts\Copyable.cs" />
+    <Compile Include="Assets\Scripts\QuickType.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\RoomGenerator.cs" />
+    <Compile Include="Assets\Scripts\GameObjectWrappers.cs" />
+    <Compile Include="Assets\Scripts\RecursiveBacktracking.cs" />
+    <Compile Include="Assets\Scripts\WeaponHandle.cs" />
+    <Compile Include="Assets\Scripts\SwordHandle.cs" />
+    <Compile Include="Assets\Scripts\Weapon.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Sword.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

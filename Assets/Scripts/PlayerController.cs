@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -38,7 +38,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = movement_axes[CURRENT] * speed;
+        var use = movement_axes[CURRENT];
+        use.Normalize();
+        rb.velocity = use * speed;
         transform.localRotation = Quaternion.Euler(0, view_angle, 0);
     }
 }

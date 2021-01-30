@@ -7,7 +7,7 @@ using QuickType;
 public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject[] voxel_model_prototypes;
-
+    [SerializeField] float cell_size = 1.0f;
     private Pool rooms = new Pool();
     private LDtk content;
     public World world { get; private set; }
@@ -178,9 +178,9 @@ public class RoomGenerator : MonoBehaviour
     void Start()
     {
         content = json_to_LDtk("Assets/Resources/Voxel.ldtk");
-        rooms = create_room_pool(content, voxel_model_prototypes);
+        rooms = create_room_pool(content, voxel_model_prototypes, cell_size);
 
-        var world_data = create_world_data(rooms, voxel_model_prototypes);
+        var world_data = create_world_data(rooms, voxel_model_prototypes, cell_size);
         world_data.cut_out_doors(voxel_model_prototypes[0]);
         world = create_world(world_data);
     }
@@ -209,10 +209,10 @@ public class RoomGenerator : MonoBehaviour
      * */
 
 
-    private static WorldData create_world_data(Pool rooms, GameObject[] prototypes)
+    private static WorldData create_world_data(Pool rooms, GameObject[] prototypes, float cell_size)
     {
         // Initialise the whole world
-        WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(7, 7), 16.0f);
+        WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(7, 7), 16.0f * cell_size);
         /*
         int index = 0;
         for (int x = 0; x < world_data.Count.x; x++)
@@ -301,19 +301,19 @@ public class RoomGenerator : MonoBehaviour
         return data;
     }
 
-    private static Pool create_room_pool(LDtk content, GameObject[] prototypes)
+    private static Pool create_room_pool(LDtk content, GameObject[] prototypes, float cell_size)
     {
         Pool rooms = new Pool();
         foreach (var level in content.Levels)
         {
-            rooms.add(create_room(level, prototypes));
+            rooms.add(create_room(level, prototypes, cell_size));
         }
         return rooms;
     }
-    private static RoomData create_room(Level level, GameObject[] prototypes)
+    private static RoomData create_room(Level level, GameObject[] prototypes, float cell_size)
     {
         var size = level.LayerInstances[0].GridSize;
-        var room = new RoomData(Vector3.zero, new Vector2Int((int)size, (int)size), 1.0f);
+        var room = new RoomData(Vector3.zero, new Vector2Int((int)size, (int)size), cell_size);
         for (int x = 0; x < room.Count.x; x++)
         {
             for (int y = 0; y < room.Count.y; y++)

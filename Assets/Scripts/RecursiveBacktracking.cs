@@ -65,8 +65,8 @@ class RecursiveBacktracking
             var ny = cy + DY[dir];
 
             if (nx >= 0 &&
-                nx <= grid.GetLength(0) &&
-                ny > 0 &&
+                nx < grid.GetLength(0) &&
+                ny >= 0 &&
                 ny < grid.GetLength(1))
             {
                 grid[cx, cy].directions[dir] = true;
