@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public abstract int get_damage();    
     public abstract void attack();
     public abstract void on_collision_hit(Collider other);
     public abstract void on_trigger_hit(Collision other);
@@ -18,3 +19,4 @@ public abstract class Weapon : MonoBehaviour
         on_trigger_hit(collision);
     }
 }
+

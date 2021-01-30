@@ -57,17 +57,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Grid3D.cs" />
+    <Compile Include="Assets\Scripts\RecursiveBacktracking.cs" />
     <Compile Include="Assets\Scripts\Copyable.cs" />
+    <Compile Include="Assets\Scripts\Sword.cs" />
     <Compile Include="Assets\Scripts\QuickType.cs" />
+    <Compile Include="Assets\Scripts\SwordHandle.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\RoomGenerator.cs" />
     <Compile Include="Assets\Scripts\GameObjectWrappers.cs" />
-    <Compile Include="Assets\Scripts\RecursiveBacktracking.cs" />
-    <Compile Include="Assets\Scripts\WeaponHandle.cs" />
-    <Compile Include="Assets\Scripts\SwordHandle.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Sword.cs" />
+    <Compile Include="Assets\Scripts\WeaponHandle.cs" />
+    <Compile Include="Assets\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

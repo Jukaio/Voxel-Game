@@ -11,6 +11,11 @@ public class Sword : Weapon
         anim.Play("Slash");
     }
 
+    public override int get_damage()
+    {
+        return 15;
+    }
+
     public override void on_collision_hit(Collider other)
     {
       
