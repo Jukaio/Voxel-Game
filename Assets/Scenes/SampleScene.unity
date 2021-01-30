@@ -198,8 +198,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prototypes:
   - items:
-    - {fileID: 4209216223322273726, guid: a9d12052ef6d2414598f99ce80f2a29d, type: 3}
-    - {fileID: 4209216223322273726, guid: 2d62b43da340b154bb67a1290b0dedd5, type: 3}
+    - {fileID: 919132149155446097, guid: 69a945055b993c44fbc01583d7787be0, type: 3}
+    - {fileID: 919132149155446097, guid: 99e74a1b2b8c5894d90ff2e52b6017f8, type: 3}
+    - {fileID: 919132149155446097, guid: d182d952fd938c74b94882165f834725, type: 3}
+    - {fileID: 919132149155446097, guid: 293899a82f50b0e46b1330f401a0ecfb, type: 3}
   - items:
     - {fileID: 124787660203031814, guid: 46bf52e598d887149acdedaaeec3b68f, type: 3}
   - items:
@@ -210,7 +212,7 @@ MonoBehaviour:
     - {fileID: 5079125158807087056, guid: 5fddc7a9025485c4d9dd9bb3453cf9f3, type: 3}
   - items:
     - {fileID: 7914927189539038664, guid: b6a05165ac85ad949b7c2dd9880d3844, type: 3}
-  cell_size: 1
+  cell_size: 1.2
 --- !u!4 &682322698
 Transform:
   m_ObjectHideFlags: 0
