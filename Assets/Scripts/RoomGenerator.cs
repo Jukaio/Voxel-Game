@@ -212,7 +212,7 @@ public class RoomGenerator : MonoBehaviour
     private static WorldData create_world_data(Pool rooms, GameObject[] prototypes, float cell_size)
     {
         // Initialise the whole world
-        WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(7, 7), 16.0f * cell_size);
+        WorldData world_data = new WorldData(Vector3.zero, new Vector2Int(11, 11), 16.0f * cell_size);
         /*
         int index = 0;
         for (int x = 0; x < world_data.Count.x; x++)
@@ -230,10 +230,9 @@ public class RoomGenerator : MonoBehaviour
         Vector2Int current = new Vector2Int(3, 3);
         Vector2Int prev;
         List<Vector2Int> open_direction = new List<Vector2Int>();
-        world_data.set(current.x, current.y, rooms.get(0));
         prev = current;
 
-        var layout = RecursiveBacktracking.build_path(new Vector2Int(3, 3), world_data.Count, 3);
+        var layout = RecursiveBacktracking.build_path(new Vector2Int(5, 5), world_data.Count, 30);
         for (int x = 0; x < layout.GetLength(0); x++)
         {
             for (int y = 0; y < layout.GetLength(1); y++)

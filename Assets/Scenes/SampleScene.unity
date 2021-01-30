@@ -203,7 +203,7 @@ MonoBehaviour:
   - {fileID: 5079125158807087056, guid: d0de34f58009c6745aeb438cd2811047, type: 3}
   - {fileID: 5079125158807087056, guid: 5fddc7a9025485c4d9dd9bb3453cf9f3, type: 3}
   - {fileID: 7914927189539038664, guid: b6a05165ac85ad949b7c2dd9880d3844, type: 3}
-  cell_size: 1
+  cell_size: 1.2
 --- !u!4 &682322698
 Transform:
   m_ObjectHideFlags: 0
